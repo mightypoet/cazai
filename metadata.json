@@ -1,0 +1,6 @@
+{
+  "name": "CAZAI",
+  "description": "Enterprise-grade AI-Powered Business Operations Platform featuring CRM, task management, medical/real estate tailored workspaces, and AI voice agents.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

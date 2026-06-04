@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", sans-serif;
+  
+  --color-google-blue: #4285F4;
+  --color-google-red: #EA4335;
+  --color-google-yellow: #FBBC04;
+  --color-google-green: #34A853;
+
+  --color-electric-blue: #4285F4;
+  --color-neon-cyan: #34A853;
+  --color-accent-purple: #EA4335;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F8F9FA] text-[#202124] antialiased font-sans selection:bg-google-blue selection:text-white min-h-screen overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-[#202124];
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-black/5;
+  }
+  
+  .glass-card {
+    @apply bg-white backdrop-blur-md border border-gray-200 hover:border-gray-300 transition-all shadow-sm rounded-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-google-blue via-google-red to-google-yellow;
+  }
+
+  /* Support Edesy widget z-index */
+  body > iframe,
+  body > div[id*="edesy"],
+  body > div[class*="edesy-widget"] {
+    position: relative;
+    z-index: 99999 !important;
+  }
+}
