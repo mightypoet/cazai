@@ -42,7 +42,7 @@
   body > iframe,
   body > div[id*="edesy"],
   body > div[class*="edesy-widget"] {
-    position: relative;
+    /* Widget handles its own position, just ensure it stays on top */
     z-index: 99999 !important;
   }
 }
