@@ -1,6 +1,8 @@
 import { Activity, Clock, FileCheck, IndianRupee, Users, PhoneOff, Calendar, UserPlus, FileText, ChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { VoiceCallsList } from '../components/VoiceCallsList';
+import { AppointmentsList } from '../components/AppointmentsList';
 
 const data = [
   { name: 'Mon', revenue: 4000, appointments: 24 },
@@ -96,62 +98,9 @@ export function MedicalDashboard() {
         </div>
       </div>
 
-      {/* Patients & Appointments List */}
-      <div className="glass-card rounded-2xl border-gray-100 overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="text-lg font-bold font-display">Upcoming Appointments</h2>
-          <button className="text-sm font-medium text-google-blue hover:text-gray-900 transition-colors flex items-center gap-1">
-            View All Calendar <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-gray-700">
-            <thead className="text-xs uppercase bg-gray-50 text-gray-500">
-              <tr>
-                <th className="px-6 py-4 font-medium">Patient</th>
-                <th className="px-6 py-4 font-medium">Time & Date</th>
-                <th className="px-6 py-4 font-medium">Doctor</th>
-                <th className="px-6 py-4 font-medium">Status</th>
-                <th className="px-6 py-4 font-medium text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {[
-                { name: 'Sarah Jenkins', time: '10:00 AM - Today', doc: 'Dr. Smith (Cardiology)', status: 'Confirmed', type: 'Follow Up' },
-                { name: 'Michael Chen', time: '11:30 AM - Today', doc: 'Dr. Adams (General)', status: 'Checked In', type: 'Consultation' },
-                { name: 'Emma Watson', time: '02:00 PM - Today', doc: 'Dr. Smith (Cardiology)', status: 'Pending', type: 'New Visit' },
-                { name: 'Arthur Morgan', time: '09:00 AM - Tomorrow', doc: 'Dr. Patel (Ortho)', status: 'Confirmed', type: 'Consultation' },
-              ].map((apt, i) => (
-                <tr key={i} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="font-medium text-gray-900">{apt.name}</div>
-                    <div className="text-xs text-gray-400">{apt.type}</div>
-                  </td>
-                  <td className="px-6 py-4">{apt.time}</td>
-                  <td className="px-6 py-4">{apt.doc}</td>
-                  <td className="px-6 py-4">
-                    <span className={cn(
-                      "px-2.5 py-1 text-xs font-medium rounded-full",
-                      apt.status === 'Confirmed' ? "bg-green-500/10 text-green-400" :
-                      apt.status === 'Checked In' ? "bg-google-blue/10 text-google-blue" :
-                      "bg-yellow-500/10 text-yellow-400"
-                    )}>
-                      {apt.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button className="text-gray-500 hover:text-gray-900 transition-colors p-2 rounded-lg hover:bg-gray-50">
-                      <FileText className="w-4 h-4" />
-                    </button>
-                    <button className="text-gray-500 hover:text-gray-900 transition-colors p-2 rounded-lg hover:bg-gray-50 ml-1">
-                      <Calendar className="w-4 h-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6">
+        <VoiceCallsList />
+        <AppointmentsList />
       </div>
     </div>
   );
