@@ -7,7 +7,7 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 
 export function Onboarding() {
-  const [step, setStep] = useState<'auth' | 'workspace'>('auth');
+  const [step, setStep] = useState<'auth' | 'workspace'>('workspace');
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,24 +72,6 @@ export function Onboarding() {
   };
 
   const handleContinue = async () => {
-    if (!user) return;
-    
-    setAuthLoading(true);
-    
-    // Create user record in our generic users table
-    const { error } = await supabase.from('users').upsert({
-      id: user.id,
-      email: user.email,
-      role: selectedType === 'real-estate' ? 'realestate' : selectedType
-    });
-    
-    setAuthLoading(false);
-    
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
     if (selectedType === 'medical') navigate('/dashboards/medical');
     else if (selectedType === 'real-estate') navigate('/dashboards/real-estate');
     else if (selectedType === 'personal') navigate('/dashboards/personal');
